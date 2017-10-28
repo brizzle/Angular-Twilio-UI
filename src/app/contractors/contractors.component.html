@@ -1,0 +1,23 @@
+<div class="table-responsive">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contractor of contractors">
+            <td>{{ contractor.id }}</td>
+            <td>{{ contractor.firstName }}</td>
+            <td>{{ contractor.lastName }}</td>
+            <td>{{ contractor.phoneNumber }}</td>
+          </tr>
+        </tbody>
+      </table>
+    
+    
+    </div>
