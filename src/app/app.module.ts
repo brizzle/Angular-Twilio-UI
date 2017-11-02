@@ -4,17 +4,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomerModule } from './customers/customer.module';
 import { ContractorModule } from './contractors/contractor.module';
 import { PurchasedNumberModule } from './purchased-numbers/purchased-number.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NavComponent } from './shared/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    NavComponent
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

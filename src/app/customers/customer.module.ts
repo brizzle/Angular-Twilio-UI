@@ -6,22 +6,31 @@ import { RouterModule } from "@angular/router";
 import { CustomersComponent } from "./customers.component";
 import { CustomerDetailComponent } from "./customer-detail.component";
 import { CustomerGuardService } from "./customer-guard.service";
+import { CustomerService } from "./customer.service";
 
 @NgModule({
-    declarations: [
-        CustomersComponent,
-        CustomerDetailComponent
-    ],
     imports: [
         CommonModule,
         FormsModule,
         RouterModule.forChild([
-            { path: 'customers', component: CustomersComponent },
-            { path: 'customers/:id', canActivate: [ CustomerGuardService ], component: CustomerDetailComponent }
+            { 
+                path: 'customers',
+                component: CustomersComponent
+            },
+            {
+                path: 'customers/:id',
+                canActivate: [ CustomerGuardService ],
+                component: CustomerDetailComponent
+            }
         ])
     ],
+    declarations: [
+        CustomersComponent,
+        CustomerDetailComponent
+    ],
     providers: [
-        CustomerGuardService
+        CustomerGuardService,
+        CustomerService
     ]
 })
 
