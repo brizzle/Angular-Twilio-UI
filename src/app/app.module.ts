@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomerModule } from './customers/customer.module';
 import { ContractorModule } from './contractors/contractor.module';
+import { TwilioMessageModule } from './responses/twilio-message.module';
 //import { PurchasedNumberModule } from './purchased-numbers/purchased-number.module';
 // import { SharedModule } from './shared/shared.module';
 
@@ -27,6 +28,7 @@ import { ContractorModule } from './contractors/contractor.module';
     ]),
     CustomerModule,
     ContractorModule,
+    TwilioMessageModule,
     HttpModule
     // ReactiveFormsModule
     //SharedModule

@@ -1,0 +1,56 @@
+<div class="panel panel-primary">
+    {{ inputMessage }}
+    <div class="panel-heading">
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Account SID</th>
+            <th>API Version</th>
+            <th>Body</th>
+            <th>From</th>
+            <th>From City</th>
+            <th>From Country</th>
+            <th>From State</th>
+            <th>From Zip</th>
+            <th>Message SID</th>
+            <th>Num Media</th>
+            <th>Num Segments</th>
+            <th>SMS Message SID</th>
+            <th>SMS SID</th>
+            <th>SMS Status</th>
+            <th>To</th>
+            <th>To City</th>
+            <th>To Country</th>
+            <th>To State</th>
+            <th>To Zip</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let twilioMessage of twilioMessages">
+            <td>{{ twilioMessage.accountSid }}</td>
+            <td>{{ twilioMessage.apiVersion }}</td>
+            <td>{{ twilioMessage.body }}</td>
+            <td>{{ twilioMessage.from }}</td>
+            <td>{{ twilioMessage.fromCity }}</td>
+            <td>{{ twilioMessage.fromCountry }}</td>
+            <td>{{ twilioMessage.fromState }}</td>
+            <td>{{ twilioMessage.fromZip }}</td>
+            <td>{{ twilioMessage.messageSid }}</td>
+            <td>{{ twilioMessage.numMedia }}</td>
+            <td>{{ twilioMessage.numSegments }}</td>
+            <td>{{ twilioMessage.smsMessageSid }}</td>
+            <td>{{ twilioMessage.smsSid }}</td>
+            <td>{{ twilioMessage.smsStatus }}</td>
+            <td>{{ twilioMessage.to }}</td>
+            <td>{{ twilioMessage.toCity }}</td>
+            <td>{{ twilioMessage.toCountry }}</td>
+            <td>{{ twilioMessage.toState }}</td>
+            <td>{{ twilioMessage.toZip }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+  </div>
