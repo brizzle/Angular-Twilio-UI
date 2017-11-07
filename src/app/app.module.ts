@@ -1,13 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+// import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from "@angular/http";
 import { RouterModule } from '@angular/router';
+// import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomerModule } from './customers/customer.module';
 import { ContractorModule } from './contractors/contractor.module';
-import { PurchasedNumberModule } from './purchased-numbers/purchased-number.module';
+//import { PurchasedNumberModule } from './purchased-numbers/purchased-number.module';
+// import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,14 +19,17 @@ import { PurchasedNumberModule } from './purchased-numbers/purchased-number.modu
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    // HttpClientModule,
     RouterModule.forRoot([
       { path: 'home', component: DashboardComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: '**', redirectTo: 'home', pathMatch: 'full'}
     ]),
     CustomerModule,
-    ContractorModule
+    ContractorModule,
+    HttpModule
+    // ReactiveFormsModule
+    //SharedModule
     // PurchasedNumberModule
   ],
   providers: [],

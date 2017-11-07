@@ -9,7 +9,7 @@ export class CustomerGuardService implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot): boolean {
         let id = +route.url[1].path;
 
-        if (isNaN(id) || id < 1) {
+        if (isNaN(id) || id < 0) {
             alert("Invalid customer Id");
             this._router.navigate(["/home"]);
             return false;
