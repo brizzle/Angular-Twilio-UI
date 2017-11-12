@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { ICustomer, Customer } from './customer';
+import { ICustomer, Customer } from '../customer';
 import { ActivatedRoute, Router, CanActivate } from '@angular/router';
 
 @Component({

@@ -5,31 +5,30 @@ import { ActivatedRoute, Router, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { ICustomer, Customer } from './customer';
-import { CustomerService } from './customer.service';
+import { ICustomer, Customer } from '../customer';
+import { CustomerService } from '../customer.service';
 
 @Component({
-  selector: 'app-customer-detail',
-  templateUrl: './customer-detail.component.html',
-  styleUrls: ['./customer-detail.component.css']
+  selector: 'app-customer-edit',
+  templateUrl: './customer-edit.component.html',
+  styleUrls: ['./customer-edit.component.css']
 })
-
-export class CustomerDetailComponent implements OnInit{
+export class CustomerEditComponent implements OnInit {
   customerForm: FormGroup;
   customer: ICustomer = new Customer();
   private _sub: Subscription;
   errorMessage: string;
 
   pageTitle: string = "Customer";
-
+  
   constructor(private _route: ActivatedRoute,
               private _router: Router,
               private _formBuilder: FormBuilder,
-              private _customerService: CustomerService) {}
+              private _customerService: CustomerService) { }
 
   ngOnInit(): void {
-      // Example of one way to
-      // create a Form Group
+    // Example of one way to
+    // create a Form Group
     // this.customerForm = new FormGroup({
     //   id: new FormControl(0),
     //   firstName: new FormControl("Brock"),
@@ -43,13 +42,13 @@ export class CustomerDetailComponent implements OnInit{
 
     // Example of another way to create a Form Group.
     // Arrays are used to pass in the values and/or validations.
-     this.customerForm = this._formBuilder.group({
-        id: +this._route.snapshot.paramMap.get('id'),
-        firstName: [null, Validators.required],
-        lastName: [null, Validators.required],
-        phoneNumber: [null, Validators.required],
-        anonymousPhoneNumber: [null],
-        message: [null]
+    this.customerForm = this._formBuilder.group({
+      id: +this._route.snapshot.paramMap.get('id'),
+      firstName: [null, Validators.required],
+      lastName: [null, Validators.required],
+      phoneNumber: [null, Validators.required],
+      anonymousPhoneNumber: [null],
+      message: [null]
     });
 
     this._sub = this._route.params.subscribe(
@@ -59,7 +58,7 @@ export class CustomerDetailComponent implements OnInit{
         }
     );
 
-     // Disabling the id field removes it from the form group
+    // Disabling the id field removes it from the form group
     //  this.customerForm = this._formBuilder.group({
     //      id: {value: id, disabled: true},
     //      firstName: null,
@@ -81,9 +80,9 @@ export class CustomerDetailComponent implements OnInit{
   getCustomer(id: number): void {
     this._customerService.getCustomer(id)
         .subscribe(
-            (customer: ICustomer) => this.onCustomerReceived(customer),
-            (error: any) => this.handleError(error)
-        );
+          (customer: ICustomer) => this.onCustomerReceived(customer),
+          (error: any) => this.handleError(error)
+    );
   }
 
   onCustomerReceived(customer: ICustomer): void {
@@ -92,12 +91,12 @@ export class CustomerDetailComponent implements OnInit{
     }
 
     this.customerForm = this._formBuilder.group({
-        id: null,
-        firstName: null,
-        lastName: null,
-        phoneNumber: null,
-        anonymousPhoneNumber: null,
-        message: null
+      id: null,
+      firstName: null,
+      lastName: null,
+      phoneNumber: null,
+      anonymousPhoneNumber: null,
+      message: null
     });
 
     console.log(`Customer: ${customer}`);
@@ -105,26 +104,26 @@ export class CustomerDetailComponent implements OnInit{
     this.customer = customer;
 
     this.customerForm = this._formBuilder.group({
-        id: this.customer.id,
-        firstName: this.customer.firstName,
-        lastName: this.customer.lastName,
-        phoneNumber: this.customer.phoneNumber,
-        anonymousPhoneNumber: this.customer.anonymousPhoneNumber,
-        message: this.customer.message
+      id: this.customer.id,
+      firstName: this.customer.firstName,
+      lastName: this.customer.lastName,
+      phoneNumber: this.customer.phoneNumber,
+      anonymousPhoneNumber: this.customer.anonymousPhoneNumber,
+      message: this.customer.message
     });
 
     if (this.customer.id === 0) {
-        this.pageTitle = "Add Customer";
+      this.pageTitle = "Add Customer";
     } else {
-        this.pageTitle = `Edit Customer: ${this.customer.firstName} ${this.customer.lastName}`;
+      this.pageTitle = `Edit Customer: ${this.customer.firstName} ${this.customer.lastName}`;
     }
 
     this.customerForm.patchValue({
-        firstName: this.customer.firstName,
-        lastName: this.customer.lastName,
-        phoneNumber: this.customer.phoneNumber,
-        anonymousPhoneNumber: this.customer.anonymousPhoneNumber,
-        message: this.customer.message
+      firstName: this.customer.firstName,
+      lastName: this.customer.lastName,
+      phoneNumber: this.customer.phoneNumber,
+      anonymousPhoneNumber: this.customer.anonymousPhoneNumber,
+      message: this.customer.message
     });
   }
 
@@ -132,18 +131,20 @@ export class CustomerDetailComponent implements OnInit{
     this.errorMessage = <any>error
   }
 
-  populateTestData(): void {
-    //   this.customerForm.setValue({
-    //     id: 3,
-    //     firstName: "Brock",
-    //     lastName: "Billings",
-    //     phoneNumber: "4053063618"
-    //   });
+  
 
-      this.customerForm.patchValue({
-          firstName: "Brock",
-          lastName: "Billings"
-      });
+  populateTestData(): void {
+    //this.customerForm.setValue({
+    //id: 3,
+    //firstName: "Brock",
+    //lastName: "Billings",
+    //phoneNumber: "4053063618"
+    //});
+          
+    this.customerForm.patchValue({
+      firstName: "Brock",
+      lastName: "Billings"
+    });
   }
 
   onCancel(): void {
@@ -165,7 +166,7 @@ export class CustomerDetailComponent implements OnInit{
   }
 
   onSaveComplete(): void {
-      this.customerForm.reset();
-      this._router.navigate(["/customers"]);
+    this.customerForm.reset();
+    this._router.navigate(["/customers"]);
   }
 }

@@ -1,0 +1,58 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    {{ pageTitle }}
+  </div>
+
+  <div class="panel-body">
+    <form class="form-horizontal"
+          novalidate
+          (ngSubmit)="login()"
+          [formGroup]="loginForm" >
+
+      <fieldset>
+        <div class="form-group">
+          <label class="col-md-2 control-label" for="userNameId">User Name</label>
+          
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="userNameId"
+                   type="text"
+                   placeholder="User Name (required)"
+                   formControlName="userName" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label" for="passwordId">Password</label>
+
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="passwordId"
+                   type="password"
+                   placeholder="Password (required)"
+                   formControlName="password" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-4 col-md-offset-2">
+            <span>
+              <button class="btn btn-primary"
+                      type="submit"
+                      [disabled]="!loginForm.valid">
+                    Log In
+              </button>
+            </span>
+            <span>
+              <a class="btn btn-default"
+                 [routerLink]="['/home']">
+                Cancel
+              </a>
+            </span>
+          </div>
+        </div>
+
+      </fieldset>
+    </form>
+  </div>
+</div>
