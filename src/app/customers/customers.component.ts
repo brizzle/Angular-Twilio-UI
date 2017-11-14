@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ICustomer } from './customer';
 import { CustomerService } from "./customer.service";
@@ -26,7 +27,8 @@ export class CustomersComponent implements OnInit {
   filteredCustomers: ICustomer[];
   customers: ICustomer[];
 
-  constructor(private _customerService: CustomerService) { }
+  constructor(private _customerService: CustomerService,
+              private _router: Router) { }
 
   performFilter(filterBy: string): ICustomer[] {
     filterBy = filterBy.toLocaleLowerCase();
@@ -34,25 +36,19 @@ export class CustomersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.customers = [
-    //   {
-    //     "id": 1,
-    //     "firstName": "Brock",
-    //     "lastName": "Billings",
-    //     "phoneNumber": "405.306.3618"
-    //    },
-    //   {
-    //     "id": 2,
-    //     "firstName": "John",
-    //     "lastName": "Doe",
-    //     "phoneNumber": "918.111.2222"
-    //   }
-    // ];
     this._customerService.getCustomers()
       .subscribe(customers => {
         this.customers = customers;
         this.filteredCustomers = this.customers;
       },
     error => this.errorMessage = <any>error);
+  }
+
+  view(id: number): void {
+    this._router.navigate(["/customers", id]);
+  }
+
+  addCustomer(): void {
+    this._router.navigate(["/customers", 0, "edit"]);
   }
 }

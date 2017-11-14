@@ -23,7 +23,7 @@ import { CustomerEditComponent } from "./edit/customer-edit.component";
             },
             {
                 path: 'customers/:id',
-                canActivate: [ CustomerGuardService ],
+                // canActivate: [ CustomerGuardService ],
                 component: CustomerDetailComponent
             },
             {

@@ -4,23 +4,21 @@ import { RouterModule } from "@angular/router";
 //import { AuthGuard } from "./users/auth-guard.service";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 
+const ROUTES = [
+  { path: "home", component: DashboardComponent },
+  // {
+  //   path: "customers",
+  //   canActivate: [ AuthGuard ],
+  //   data: { preload: true },
+  //   loadChildren: "app/customers/customer.module#CustomerModule"
+  // }
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '**', redirectTo: 'home', pathMatch: 'full'}
+];
+
 @NgModule({
-  imports: [
-      RouterModule.forRoot([
-        { path: "home", component: DashboardComponent },
-        // {
-        //   path: "customers",
-        //   canActivate: [ AuthGuard ],
-        //   data: { preload: true },
-        //   loadChildren: "app/customers/customer.module#CustomerModule"
-        // }
-        { path: '', redirectTo: 'home', pathMatch: 'full'},
-        { path: '**', redirectTo: 'home', pathMatch: 'full'}
-      ])
-  ],
+  imports: [ RouterModule.forRoot(ROUTES) ],
   providers: [],
-  exports: [
-    RouterModule
-  ]
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }

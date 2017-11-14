@@ -1,31 +1,32 @@
 <div class="panel panel-primary">
   {{ inputMessage }}
   <div class="panel-heading">
-    <button class="btn btn-default" [routerLink]="['/customers/:id/edit', 0]">Add Customer</button>
+    <button class="btn btn-default" (click)="addCustomer()">Add Customer</button>
   </div>
   <div class="table-responsive">
     <table class="table">
       <thead>
         <tr>
-          <th>Id</th>
           <th>Name</th>
-          <!-- <th>First Name</th>
-          <th>Last Name</th>
-          <th>Phone Number</th>
-          <th>Actions</th> -->
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let customer of customers">
-          <td>{{ customer.id }}</td>
           <td>
-            <a [routerLink]="['/customers/:id/edit', customer.id]">
+            <!-- Template based routing -->
+            <!-- <a [routerLink]="['/customers', customer.id]">
                 {{ customer.lastName }}, {{ customer.firstName }}
-            </a>
+            </a> -->
+
+            <!-- Component based routing -->
+            <a (click)="view(customer.id)">
+              {{ customer.lastName }}, {{ customer.firstName }}
+          </a>
           </td>
-          <!-- <td>{{ customer.lastName }}</td>
-          <td>{{ customer.phoneNumber }}</td> -->
-          <!-- <td><button class="btn btn-info" [routerLink]="['/customers', customer.id]">Edit</button></td> -->
+          <td>
+            <button class="btn btn-info" (click)="view(customer.id)">View</button>
+          </td>
         </tr>
       </tbody>
     </table>
