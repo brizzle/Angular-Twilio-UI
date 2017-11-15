@@ -45,7 +45,7 @@ export class CustomersComponent implements OnInit {
   }
 
   view(id: number): void {
-    this._router.navigate(["/customers", id]);
+    this._router.navigate(["/customers", id, "edit"]);
   }
 
   addCustomer(): void {

@@ -4,13 +4,9 @@
     </div>
   
     <div class="panel-body">
-      <!-- <form class="form-horizontal"
-            (ngSubmit)="save()"
-            [formGroup]="customerForm"
-            novalidate> -->
       <form class="form-horizontal"
             novalidate
-            (ngSubmit)="saveCustomer()"
+            (ngSubmit)="onSave()"
             [formGroup]="customerForm">
         <fieldset>
   
@@ -80,13 +76,6 @@
                       Save
                     </button>
                   </span>
-                  <span>
-                        <button class='btn btn-warning'
-                                type='button'
-                                (click)="populateTestData()">
-                          Test Data
-                        </button>
-                      </span>
                   <span>
                     <button class="btn btn-default"
                             type="button"
