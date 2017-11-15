@@ -11,6 +11,7 @@ import { TwilioMessageModule } from './responses/twilio-message.module';
 
 /* Feature Modules */
 import { UserModule } from './users/user.module';
+import { SignUpModule } from './sign-up/sign-up.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { UserModule } from './users/user.module';
     CustomerModule,
     ContractorModule,
     TwilioMessageModule,
+    SignUpModule,
     AppRoutingModule
   ],
   declarations: [

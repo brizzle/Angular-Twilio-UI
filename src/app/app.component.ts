@@ -33,8 +33,13 @@ export class AppComponent {
     }
   }
 
-  logOut():void {
+  logOut(): void {
     this.authService.logout();
     this._router.navigateByUrl("/home");
+  }
+
+  signUp(): void {
+    console.log("signUp()...");
+    this._router.navigate(["/signUp"]);
   }
 }

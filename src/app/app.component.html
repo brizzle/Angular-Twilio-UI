@@ -25,6 +25,9 @@
           <a [routerLink]="['/login']">Welcome {{ authService.currentUser.userName }}</a>
         </li>
         <li *ngIf="!authService.isLoggedIn()">
+          <a (click)="signUp()">Sign up</a>
+        </li>
+        <li *ngIf="!authService.isLoggedIn()">
           <a [routerLink]="['/login']">Log In</a>
         </li>
         <li *ngIf="authService.isLoggedIn()">
