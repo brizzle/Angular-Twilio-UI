@@ -33,6 +33,10 @@ export class AppComponent {
     }
   }
 
+  login(): void {
+    this._router.navigate(["/login"]);
+  }
+
   logOut(): void {
     this.authService.logout();
     this._router.navigateByUrl("/home");
@@ -41,5 +45,25 @@ export class AppComponent {
   signUp(): void {
     console.log("signUp()...");
     this._router.navigate(["/signUp"]);
+  }
+
+  dashboard(): void {
+    this._router.navigate(["/dashboard"]);
+  }
+
+  customers(): void {
+    this._router.navigate(["/customers"]);
+  }
+
+  contractors(): void {
+    this._router.navigate(["/contractors"]);
+  }
+
+  purchasedNumbers(): void {
+    this._router.navigate(["/purchasedNumbers"]);
+  }
+
+  twilioMessages(): void {
+    this._router.navigate(["/twilioMessages"]);
   }
 }

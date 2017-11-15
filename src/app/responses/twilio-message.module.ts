@@ -6,22 +6,20 @@ import { RouterModule } from "@angular/router";
 import { TwilioMessagesComponent } from "./twilio-messages.component";
 import { TwilioMessageService } from "./twilio-message.service";
 
+const ROUTES = [
+  { 
+    path: "twilioMessages",
+    component: TwilioMessagesComponent
+  }
+];
+
 @NgModule({
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        RouterModule.forChild([
-            { 
-                path: 'twiliomessages',
-                component: TwilioMessagesComponent
-            }
-        ])
-    ],
-    declarations: [
-        TwilioMessagesComponent
-    ],
-    providers: [
-        TwilioMessageService
-    ]
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(ROUTES)
+  ],
+  declarations: [ TwilioMessagesComponent ],
+  providers: [ TwilioMessageService ]
 })
 export class TwilioMessageModule { }

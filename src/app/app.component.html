@@ -5,30 +5,30 @@
       <a class='navbar-brand'>{{ pageTitle }}</a>
       <ul class='nav navbar-nav'>
         <li routerLinkActive="active">
-          <a [routerLink]="['/home']">Home</a>
+          <a (click)="dashboard()">Dashboard</a>
         </li>
         <li routerLinkActive="active">
-          <a [routerLink]="['/customers']">Customers</a>
+          <a (click)="customers()">Customers</a>
         </li>
         <li routerLinkActive="active">
-          <a [routerLink]="['/contractors']">Contractors</a>
+          <a (click)="contractors()">Contractors</a>
         </li>
         <li routerLinkActive="active">
-          <a [routerLink]="['/purchasedNumberList']">Purchased Numbers</a>
+          <a (click)="purchasedNumbers()">Purchased Numbers</a>
         </li>
         <li routerLinkActive="active">
-          <a [routerLink]="['/twiliomessages']">Twilio Messages</a>
+          <a (click)="twilioMessages()">Twilio Messages</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="authService.isLoggedIn()">
-          <a [routerLink]="['/login']">Welcome {{ authService.currentUser.userName }}</a>
+          <a (click)="login()">Welcome {{ authService.currentUser.userName }}</a>
         </li>
         <li *ngIf="!authService.isLoggedIn()">
           <a (click)="signUp()">Sign up</a>
         </li>
         <li *ngIf="!authService.isLoggedIn()">
-          <a [routerLink]="['/login']">Log In</a>
+          <a (click)="login()">Log In</a>
         </li>
         <li *ngIf="authService.isLoggedIn()">
           <a (click)="logOut()">Log Out</a>

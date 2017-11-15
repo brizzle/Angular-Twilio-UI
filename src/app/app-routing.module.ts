@@ -5,15 +5,18 @@ import { RouterModule } from "@angular/router";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 
 const ROUTES = [
-  { path: "home", component: DashboardComponent },
-  // {
-  //   path: "customers",
-  //   canActivate: [ AuthGuard ],
-  //   data: { preload: true },
-  //   loadChildren: "app/customers/customer.module#CustomerModule"
-  // }
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: '**', redirectTo: 'home', pathMatch: 'full'}
+  {
+    path: "dashboard",
+    component: DashboardComponent
+  },
+  {
+    path: "",
+    redirectTo: "dashboard",
+    pathMatch: "full"},
+  {
+    path: "**",
+    redirectTo: "dashboard",
+    pathMatch: "full"}
 ];
 
 @NgModule({

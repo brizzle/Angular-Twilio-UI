@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomerModule } from './customers/customer.module';
 import { ContractorModule } from './contractors/contractor.module';
 import { TwilioMessageModule } from './responses/twilio-message.module';
+import { PurchasedNumbersModule } from './purchased-numbers/purchased-number.module';
 
 /* Feature Modules */
 import { UserModule } from './users/user.module';
@@ -22,6 +23,7 @@ import { SignUpModule } from './sign-up/sign-up.module';
     ContractorModule,
     TwilioMessageModule,
     SignUpModule,
+    PurchasedNumbersModule,
     AppRoutingModule
   ],
   declarations: [
