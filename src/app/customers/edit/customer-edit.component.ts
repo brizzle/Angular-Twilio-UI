@@ -27,64 +27,20 @@ export class CustomerEditComponent implements OnInit {
               private _customerService: CustomerService) { }
 
   ngOnInit(): void {
-    // Using snapshot approach
-    // Used when reading parameters only once
-    // + at the front cast to numeric number.
-    // let id = +this._route.snapshot.paramMap.get("id");
-
-    // Using the Observable approach
-    // When using components where only the parameter changes,
-    // the component will not be reinitialized therefore the
-    // ngOnInit() will never be called again.
     this._sub = this._route.paramMap.subscribe(
       params => {
-        let id = +params.get("id");
+        this.customer = this._route.snapshot.data["customer"];
 
         this.customerForm = this._formBuilder.group({
-          id: [id],
-          firstName: [null],
-          lastName: [null],
-          phoneNumber: [null],
-          anonymousPhoneNumber: [null],
-          message: [null]
+          id: [this.customer.id],
+          firstName: [this.customer.firstName],
+          lastName: [this.customer.lastName],
+          phoneNumber: [this.customer.phoneNumber],
+          anonymousPhoneNumber: [this.customer.anonymousPhoneNumber],
+          message: [this.customer.message]
         });
-
-        this.getCustomer(id);
       }
     );
-  }
-
-  getCustomer(id: number): void {
-    this._customerService.getCustomer(id)
-      .subscribe(
-        (customer: ICustomer) => this.onCustomerReceived(customer),
-        (error: any) => this.handleError(error)
-    );
-  }
-
-  onCustomerReceived(customer: ICustomer): void {
-    if (this.customerForm) {
-        this.customerForm.reset();
-    }
-
-    this.customer = customer;
-
-    // Used when updating parts of an object
-    this.customerForm.patchValue({
-      id: this.customer.id,
-      firstName: this.customer.firstName,
-      lastName: this.customer.lastName
-    });
-
-    // Used when updating the entire object
-    // this.customerForm = this._formBuilder.group({
-    //   id: this.customer.id,
-    //   firstName: this.customer.firstName,
-    //   lastName: this.customer.lastName,
-    //   phoneNumber: this.customer.phoneNumber,
-    //   anonymousPhoneNumber: this.customer.anonymousPhoneNumber,
-    //   message: this.customer.message
-    // });
 
     if (this.customer.id === 0) {
       this.pageTitle = "Add Customer";
@@ -92,6 +48,45 @@ export class CustomerEditComponent implements OnInit {
       this.pageTitle = `Edit Customer: ${this.customer.firstName} ${this.customer.lastName}`;
     }
   }
+
+  // getCustomer(id: number): void {
+  //   this._customerService.getCustomer(id)
+  //     .subscribe(
+  //       (customer: ICustomer) => this.onCustomerReceived(customer),
+  //       (error: any) => this.handleError(error)
+  //   );
+  // }
+
+  // onCustomerReceived(customer: ICustomer): void {
+  //   if (this.customerForm) {
+  //       this.customerForm.reset();
+  //   }
+
+  //   this.customer = customer;
+
+  //   // Used when updating parts of an object
+  //   this.customerForm.patchValue({
+  //     id: this.customer.id,
+  //     firstName: this.customer.firstName,
+  //     lastName: this.customer.lastName
+  //   });
+
+  //   // Used when updating the entire object
+  //   // this.customerForm = this._formBuilder.group({
+  //   //   id: this.customer.id,
+  //   //   firstName: this.customer.firstName,
+  //   //   lastName: this.customer.lastName,
+  //   //   phoneNumber: this.customer.phoneNumber,
+  //   //   anonymousPhoneNumber: this.customer.anonymousPhoneNumber,
+  //   //   message: this.customer.message
+  //   // });
+
+  //   if (this.customer.id === 0) {
+  //     this.pageTitle = "Add Customer";
+  //   } else {
+  //     this.pageTitle = `Edit Customer: ${this.customer.firstName} ${this.customer.lastName}`;
+  //   }
+  // }
 
   handleError(error: any): void {
     this.errorMessage = <any>error
@@ -108,7 +103,7 @@ export class CustomerEditComponent implements OnInit {
       this._customerService.saveCustomer(customer)
         .subscribe(
           () => this.onSaveComplete(),
-          (error: any) => this.errorMessage = <any>error
+          (error: any) => this.handleError(error)
         );
     }
   }

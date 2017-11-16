@@ -1,6 +1,4 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
 import { AuthGuard } from "../users/auth-guard.service";
@@ -8,6 +6,9 @@ import { CustomersComponent } from "./customers.component";
 import { CustomerGuardService } from "./customer-guard.service";
 import { CustomerService } from "./customer.service";
 import { CustomerEditComponent } from "./edit/customer-edit.component";
+import { CustomerResolver } from "./customer-resolver.service";
+
+import { SharedModule } from "../shared/shared.module";
 
 const ROUTES = [
   { 
@@ -19,14 +20,14 @@ const ROUTES = [
   {
     path: 'customers/:id/edit',
     canActivate: [ CustomerGuardService ],
-    component: CustomerEditComponent
+    component: CustomerEditComponent,
+    resolve: { customer: CustomerResolver }
   }
 ];
 
 @NgModule({
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
+    SharedModule,
     RouterModule.forChild(ROUTES)
   ],
   declarations: [
@@ -35,7 +36,8 @@ const ROUTES = [
   ],
   providers: [
     CustomerGuardService,
-    CustomerService
+    CustomerService,
+    CustomerResolver
   ]
 })
 export class CustomerModule { }

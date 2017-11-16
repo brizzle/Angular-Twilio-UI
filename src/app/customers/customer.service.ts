@@ -29,7 +29,7 @@ export class CustomerService {
 
     return this._http.get(this._baseUrl, options)
       .map(this.extractData)
-      .do(data => console.log("getCustomers: " + JSON.stringify(data)))
+      // .do(data => console.log("getCustomers: " + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
@@ -41,7 +41,7 @@ export class CustomerService {
 
     return this._http.get(url, options)
       .map(this.extractData)
-      .do(data => console.log("getCustomer: " + JSON.stringify(data)))
+      // .do(data => console.log("getCustomer: " + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
