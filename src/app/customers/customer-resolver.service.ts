@@ -22,6 +22,8 @@ export class CustomerResolver implements Resolve<ICustomer> {
     // let id = route.params["id"];
     let id = <any>route.paramMap.get("id");
 
+    console.log(`resolve.... ${id}`);
+
     if (isNaN(id)) {
       console.log(`Customer id was not a number: ${id}`);
       this._router.navigate(["/customers"]);

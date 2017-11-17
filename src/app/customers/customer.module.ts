@@ -14,7 +14,7 @@ const ROUTES = [
   { 
     path: 'customers',
     canActivate: [ AuthGuard ],
-    data: { preload: true },
+    // data: { preload: true },
     component: CustomersComponent
   },
   {

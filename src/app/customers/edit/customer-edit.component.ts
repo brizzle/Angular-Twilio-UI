@@ -27,20 +27,22 @@ export class CustomerEditComponent implements OnInit {
               private _customerService: CustomerService) { }
 
   ngOnInit(): void {
-    this._sub = this._route.paramMap.subscribe(
-      params => {
-        this.customer = this._route.snapshot.data["customer"];
+    this._route.data.subscribe(data => {
+      this.onCustomerRetrieved(data["customer"]);
+    })
+  }
 
-        this.customerForm = this._formBuilder.group({
-          id: [this.customer.id],
-          firstName: [this.customer.firstName],
-          lastName: [this.customer.lastName],
-          phoneNumber: [this.customer.phoneNumber],
-          anonymousPhoneNumber: [this.customer.anonymousPhoneNumber],
-          message: [this.customer.message]
-        });
-      }
-    );
+  onCustomerRetrieved(customer: ICustomer): void {
+    this.customer = customer;
+
+    this.customerForm = this._formBuilder.group({
+      id: [this.customer.id],
+      firstName: [this.customer.firstName],
+      lastName: [this.customer.lastName],
+      phoneNumber: [this.customer.phoneNumber],
+      anonymousPhoneNumber: [this.customer.anonymousPhoneNumber],
+      message: [this.customer.message]
+    });
 
     if (this.customer.id === 0) {
       this.pageTitle = "Add Customer";
@@ -48,45 +50,6 @@ export class CustomerEditComponent implements OnInit {
       this.pageTitle = `Edit Customer: ${this.customer.firstName} ${this.customer.lastName}`;
     }
   }
-
-  // getCustomer(id: number): void {
-  //   this._customerService.getCustomer(id)
-  //     .subscribe(
-  //       (customer: ICustomer) => this.onCustomerReceived(customer),
-  //       (error: any) => this.handleError(error)
-  //   );
-  // }
-
-  // onCustomerReceived(customer: ICustomer): void {
-  //   if (this.customerForm) {
-  //       this.customerForm.reset();
-  //   }
-
-  //   this.customer = customer;
-
-  //   // Used when updating parts of an object
-  //   this.customerForm.patchValue({
-  //     id: this.customer.id,
-  //     firstName: this.customer.firstName,
-  //     lastName: this.customer.lastName
-  //   });
-
-  //   // Used when updating the entire object
-  //   // this.customerForm = this._formBuilder.group({
-  //   //   id: this.customer.id,
-  //   //   firstName: this.customer.firstName,
-  //   //   lastName: this.customer.lastName,
-  //   //   phoneNumber: this.customer.phoneNumber,
-  //   //   anonymousPhoneNumber: this.customer.anonymousPhoneNumber,
-  //   //   message: this.customer.message
-  //   // });
-
-  //   if (this.customer.id === 0) {
-  //     this.pageTitle = "Add Customer";
-  //   } else {
-  //     this.pageTitle = `Edit Customer: ${this.customer.firstName} ${this.customer.lastName}`;
-  //   }
-  // }
 
   handleError(error: any): void {
     this.errorMessage = <any>error

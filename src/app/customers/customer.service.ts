@@ -7,7 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
-import { ICustomer } from './customer';
+import { ICustomer, Customer } from './customer';
 
 @Injectable()
 export class CustomerService {
@@ -16,24 +16,21 @@ export class CustomerService {
 
   constructor(private _http: Http) { }
 
-  // getCustomers(): Observable<ICustomer[]> {
-  //   return this._http.get(this._customerUrl)
-  //     .map(this.extractData)
-  //     .do(data => console.log("getCustomers: " + JSON.stringify(data)))
-  //     .catch(this.handleError);
-  // }
-
   getCustomers(): Observable<ICustomer[]>{
     let headers = new Headers({ "Content-Type": "application/json" });
     let options = new RequestOptions({ headers: headers });
 
     return this._http.get(this._baseUrl, options)
       .map(this.extractData)
-      // .do(data => console.log("getCustomers: " + JSON.stringify(data)))
+      .do(data => console.log("getCustomers: " + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
   getCustomer(id: number): Observable<ICustomer> {
+    if (id === 0) {
+      return Observable.of(new Customer());
+    }
+
     let headers = new Headers({ "Content-Type": "application/json" });
     let options = new RequestOptions({ headers: headers });
 
@@ -41,7 +38,7 @@ export class CustomerService {
 
     return this._http.get(url, options)
       .map(this.extractData)
-      // .do(data => console.log("getCustomer: " + JSON.stringify(data)))
+      .do(data => console.log("getCustomer: " + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
@@ -83,6 +80,7 @@ export class CustomerService {
 
   private handleError(error: Response): Observable<any> {
     console.error(error);
+
     return Observable.throw(error.json().error || "Server error");
   }
 }
