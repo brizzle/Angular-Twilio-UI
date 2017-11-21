@@ -1,3 +1,48 @@
-<p>
-  sign-up works!
-</p>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    {{ pageTitle }}
+  </div>
+
+  <div class="panel-body">
+    <div class="wizard">
+      <a (click)="sectionOne()">
+        Section One
+      </a>
+      <a (click)="sectionTwo()">
+        Section Two
+      </a>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="panel-footer">
+    <div class="form-group">
+      <span>
+        <button class="btn btn-default"
+                [disabled]="!canGoToPrevious()">
+          Previous
+        </button>
+      </span>
+
+      <span>
+        <button class="btn btn-warning"
+                [disabled]="!canGoToNext()">
+          Next
+        </button>
+      </span>
+
+      <span>
+        <button class="btn btn-primary">
+          Submit
+        </button>
+      </span>
+
+      <span>
+        <button class="btn btn-default">
+          Cancel
+        </button>
+      </span>
+    </div>
+  </div>
+</div>
