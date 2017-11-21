@@ -58,4 +58,8 @@ export class SignUpComponent implements OnInit {
       return true;
     }
   }
+
+  cancel(): void {
+    this._router.navigate(["dashboard"]);
+  }
 }

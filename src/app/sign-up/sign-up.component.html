@@ -20,7 +20,8 @@
     <div class="form-group">
       <span>
         <button class="btn btn-default"
-                [disabled]="!canGoToPrevious()">
+                [disabled]="!canGoToPrevious()"
+                *ngIf="canGoToPrevious()">
           Previous
         </button>
       </span>
@@ -39,7 +40,8 @@
       </span>
 
       <span>
-        <button class="btn btn-default">
+        <button class="btn btn-default"
+                (click)="cancel()">
           Cancel
         </button>
       </span>
