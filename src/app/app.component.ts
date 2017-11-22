@@ -11,7 +11,7 @@ import { AuthService } from './users/auth.service';
   // providers: [ PurchasedNumberService ]
 })
 export class AppComponent {
-  pageTitle = 'Brocks app';
+  pageTitle = 'Awesome App';
   loading: boolean = true;
 
   constructor(private authService: AuthService,
