@@ -45,6 +45,8 @@ export class CustomersComponent implements OnInit {
   }
 
   view(id: number): void {
+    console.log("In view()...");
+    console.log(`Id: ${id}`);
     this._router.navigate(["/customers", id, "edit"]);
   }
 

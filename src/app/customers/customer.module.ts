@@ -10,12 +10,25 @@ import { CustomerResolver } from "./customer-resolver.service";
 
 import { SharedModule } from "../shared/shared.module";
 
+const CHILD_ROUTES = [
+  // {
+  //   path: "",
+  //   component: CustomersComponent
+  // },
+  {
+    path: ':id/edit',
+    canActivate: [ CustomerGuardService ],
+    component: CustomerEditComponent,
+    resolve: { customer: CustomerResolver }
+  }
+];
+
 const ROUTES = [
   { 
     path: 'customers',
-    canActivate: [ AuthGuard ],
-    // data: { preload: true },
-    component: CustomersComponent
+    component: CustomersComponent,
+    canActivate: [ AuthGuard ]
+    // children: CHILD_ROUTES
   },
   {
     path: 'customers/:id/edit',

@@ -5,10 +5,12 @@
 
   <div class="panel-body">
     <div class="wizard">
-      <a (click)="sectionOne()">
-        Section One
+      <a [routerLink]="['sectionOne']"
+         routerLinkActive="active">
+        Section One <span class="glyphicon glyphicon-exclamation-sign"></span>
       </a>
-      <a (click)="sectionTwo()">
+      <a [routerLink]="['sectionTwo']"
+         routerLinkActive="active">
         Section Two
       </a>
     </div>
