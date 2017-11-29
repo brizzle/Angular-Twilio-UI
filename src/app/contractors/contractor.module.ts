@@ -4,6 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ContractorsComponent } from './contractors.component';
+import { AuthGuard } from '../users/auth-guard.service';
+import { ContractorsGuardService } from './contractors-guard.service';
+
+const ROUTES = [
+  {
+    path: 'contractors',
+    component: ContractorsComponent,
+    canActivate: [ AuthGuard ]
+  }
+];
 
 @NgModule({
   declarations: [
@@ -12,13 +22,8 @@ import { ContractorsComponent } from './contractors.component';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forChild([
-      { path: 'contractors', component: ContractorsComponent }
-      // { path: 'contractors/:id', component: CustomerDetailComponent }
-    ])
+    RouterModule.forChild(ROUTES)
   ],
-  providers: [],
-  exports: []
+  providers: [ ContractorsGuardService ]
 })
-
 export class ContractorModule { }
