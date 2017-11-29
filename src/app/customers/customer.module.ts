@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import { AuthGuard } from "../users/auth-guard.service";
 import { CustomersComponent } from "./customers.component";
 import { CustomerGuardService } from "./customer-guard.service";
+import { CustomerEditGuardService } from "./edit/customer-edit-guard.service";
 import { CustomerService } from "./customer.service";
 import { CustomerEditComponent } from "./edit/customer-edit.component";
 import { CustomerResolver } from "./customer-resolver.service";
@@ -18,6 +19,7 @@ const CHILD_ROUTES = [
   {
     path: ':id/edit',
     canActivate: [ CustomerGuardService ],
+    canDeactivate: [ CustomerEditGuardService ],
     component: CustomerEditComponent,
     resolve: { customer: CustomerResolver }
   }
@@ -33,6 +35,7 @@ const ROUTES = [
   {
     path: 'customers/:id/edit',
     canActivate: [ CustomerGuardService ],
+    canDeactivate: [ CustomerEditGuardService ],
     component: CustomerEditComponent,
     resolve: { customer: CustomerResolver }
   }
@@ -50,7 +53,8 @@ const ROUTES = [
   providers: [
     CustomerGuardService,
     CustomerService,
-    CustomerResolver
+    CustomerResolver,
+    CustomerEditGuardService
   ]
 })
 export class CustomerModule { }
