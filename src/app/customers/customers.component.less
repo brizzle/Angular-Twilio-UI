@@ -1,0 +1,21 @@
+@base-color: #008000;
+@table-header-color: @base-color + 50%;
+
+// Color Functions
+@table-header-lighten-color: lighten(@base-color, 50%);
+@table-header-darken-color: darken(@base-color, 50%);
+@table-header-saturate-color: saturate(@base-color, 50%);
+@table-header-desaturate-color: desaturate(@base-color, 50%);
+@table-header-fadein-color: fadein(@base-color, 50%);
+@table-header-fadeout-color: fadeout(@base-color, 50%);
+@table-header-fade-color: fade(@base-color, 50%);
+@table-header-spin-color: spin(@base-color, 50%);
+@table-header-mix-color: mix(@base-color, Blue);
+
+.panel-heading {
+  background-color: @base-color;
+}
+
+.table thead {
+  background-color: @table-header-lighten-color;
+}

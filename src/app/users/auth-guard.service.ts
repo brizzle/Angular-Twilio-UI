@@ -19,6 +19,11 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     return this.checkLoggedIn(state.url);
   }
 
+  // Cannot access the ActivatedRouteSnapshot or
+  // the RouterStateSnapshot because the module defining
+  // the route is not yet loaded (if using lazy loading)
+  //
+  // Blocks preloading
   canLoad(route: Route): boolean {
     console.log("In canLoad: " + route.path);
     return this.checkLoggedIn(route.path);
