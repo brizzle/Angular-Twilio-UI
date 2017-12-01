@@ -14,7 +14,13 @@ module.exports = function (config) {
       require('@angular/cli/plugins/karma')
     ],
     client:{
-      clearContext: false // leave Jasmine Spec Runner output visible in browser
+      clearContext: false, // leave Jasmine Spec Runner output visible in browser
+      // captureConsole: true,
+      // browserConsoleLogOptions: {
+      //   level: "log",
+      //   format: '%b %T: %m',
+      //   terminal: true
+      // }
     },
     coverageIstanbulReporter: {
       reports: [ 'html', 'lcovonly' ],
@@ -26,10 +32,19 @@ module.exports = function (config) {
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
-    logLevel: config.LOG_INFO,
+    // logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
     autoWatch: true,
-    // browsers: ['Safari', 'Chrome'],
+    // browsers: ['Chrome'],
     browsers: ['Safari'],
-    singleRun: false
+    singleRun: false,
+    // customLaunchers: {
+    //   // From the CLI. Not used here but interesting
+    //   // chrome setup for travis CI using chromium
+    //   Chrome_travis_ci: {
+    //     base: 'Chrome',
+    //     flags: ['--no-sandbox']
+    //   }
+    // }
   });
 };

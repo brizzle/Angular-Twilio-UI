@@ -17,11 +17,11 @@ describe("Service: AuthService", () => {
   });
 
   it("should be created", () => {
-    expect(sut).toBeTruthy();
+    expect(sut).not.toBeNull();
   });
 
   describe("Method: IsLoggedIn()", () => {
-    describe("On initialization", () => {
+    describe("On creation", () => {
       it("The user is not logged in", () => {
         expect(sut.isLoggedIn()).toBeFalsy("Was false...");
       });
@@ -54,7 +54,7 @@ describe("Service: AuthService", () => {
       it("The CurrentUser is reset", () => {
         sut.currentUser = testUser;
         sut.logout();
-        expect(sut.currentUser === null).toBeTruthy();
+        expect(sut.currentUser).toBeNull();
       });
     });
   });
