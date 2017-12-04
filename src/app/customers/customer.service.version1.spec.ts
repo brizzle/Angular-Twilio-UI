@@ -1,5 +1,5 @@
 import { async, getTestBed, TestBed, inject } from "@angular/core/testing";
-import { BaseRequestOptions, RequestMethod, Http, HttpModule, Response, ResponseOptions, XHRBackend } from "@angular/http";
+import { BaseRequestOptions, RequestMethod, Http, Response, ResponseOptions, XHRBackend } from "@angular/http";
 import { MockBackend, MockConnection } from "@angular/http/testing";
 
 import { CustomerService } from "./customer.service";
@@ -13,7 +13,7 @@ import 'rxjs/add/observable/of';
 //
 // https://github.com/brizzle/testing-angular-services/blob/master/src/app/user.service.spec.ts
 
-describe("Service: CustomerService", () => {
+describe("Service: CustomerService (Test Setup Version #1)", () => {
   const mockData: Array<ICustomer> = [
     {
       id: 1,
@@ -82,8 +82,8 @@ describe("Service: CustomerService", () => {
     
         service
           .getCustomers()
-          .subscribe((response) => {
-            expect(response).toEqual(mockData, JSON.stringify(response));
+          .subscribe((customers: ICustomer[]) => {
+            expect(customers).toEqual(mockData, JSON.stringify(customers));
         });
       });
     });

@@ -71,7 +71,6 @@ export class CustomerService {
 
   private extractData(response: Response) {
     if (response.status === 404) {
-      // console.log("Not found by BROCK");
       return {};
     }
 
@@ -83,9 +82,6 @@ export class CustomerService {
   private handleError(error: Response): Observable<any> {
     console.error(error);
 
-    // console.log(`ERROR - BROCK - NOT FOUND - ${error}`);
-
     return Observable.throw(error.json().error || "Server error");
-    // return Observable.throw("Server error");
   }
 }
